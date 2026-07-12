@@ -1,0 +1,2 @@
+streamlit>=1.30
+yfinance>=0.2.40
