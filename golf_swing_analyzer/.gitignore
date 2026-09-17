@@ -1,0 +1,4 @@
+# Your recorded swings stay on your machine, not in git.
+swings/
+!swings/.gitkeep
+*.mp4

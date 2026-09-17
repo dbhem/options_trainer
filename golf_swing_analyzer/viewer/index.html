@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Golf Swing 3D Analyzer</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Tell the browser where to find the 3D drawing library (three.js). -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="scene"></div>
+
+  <!-- Drop hint shown before any swing is loaded -->
+  <div id="drop-hint">
+    <div class="card">
+      <h1>🏌️ Golf Swing 3D Analyzer</h1>
+      <p>Load a recorded swing to begin.</p>
+      <p class="small">Pick one below, or <b>drag &amp; drop a <code>swing.json</code></b> file anywhere on this page.</p>
+      <div class="row">
+        <select id="swing-select"><option value="">— choose a recorded swing —</option></select>
+        <button id="refresh-btn" title="Re-scan your swings folder">↻</button>
+      </div>
+      <p class="small"><label class="link-like"><input type="file" id="file-input" accept=".json" hidden> or open a file…</label></p>
+      <p id="load-error" class="error"></p>
+    </div>
+  </div>
+
+  <!-- Info overlay (top-right) -->
+  <div id="info">
+    <div class="stat"><span>Frame</span><b id="stat-frame">–</b></div>
+    <div class="stat"><span>Time</span><b id="stat-time">–</b></div>
+    <div class="stat"><span>Shoulder turn</span><b id="stat-shoulder">–</b></div>
+    <div class="stat"><span>Hip turn</span><b id="stat-hip">–</b></div>
+    <div class="stat"><span>Spine tilt</span><b id="stat-spine">–</b></div>
+  </div>
+
+  <!-- View preset buttons (top-left) -->
+  <div id="views">
+    <button data-view="faceon">Face-on</button>
+    <button data-view="dtl">Down-the-line</button>
+    <button data-view="top">Top</button>
+    <button data-view="reset">Reset</button>
+    <label class="toggle"><input type="checkbox" id="trail-toggle" checked> Hand path</label>
+  </div>
+
+  <!-- Playback controls (bottom) -->
+  <div id="controls">
+    <button id="step-back" title="Previous frame">⏮</button>
+    <button id="play" title="Play / pause">▶</button>
+    <button id="step-fwd" title="Next frame">⏭</button>
+    <input type="range" id="scrub" min="0" max="0" value="0" step="1" />
+    <select id="speed" title="Playback speed">
+      <option value="0.1">0.1×</option>
+      <option value="0.25">0.25×</option>
+      <option value="0.5" selected>0.5×</option>
+      <option value="1">1×</option>
+      <option value="2">2×</option>
+    </select>
+    <label class="toggle"><input type="checkbox" id="loop-toggle" checked> Loop</label>
+    <button id="load-another" title="Load a different swing">Load…</button>
+  </div>
+
+  <script type="module" src="viewer.js"></script>
+</body>
+</html>

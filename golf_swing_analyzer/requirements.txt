@@ -1,0 +1,9 @@
+# Python packages for the golf swing analyzer's capture step.
+# Install with:  pip install -r requirements.txt
+#
+# Works best on Python 3.9 - 3.12 (MediaPipe does not yet support 3.13).
+# The 3D VIEWER needs no Python packages at all -- it runs in your browser.
+
+opencv-python>=4.8
+mediapipe>=0.10.9
+numpy>=1.24
