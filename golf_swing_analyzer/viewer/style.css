@@ -1,0 +1,100 @@
+:root {
+  --bg: #0e1116;
+  --panel: rgba(20, 26, 34, 0.82);
+  --border: #2a3441;
+  --text: #e6edf3;
+  --muted: #8b98a6;
+  --accent: #37c871;
+  --accent2: #ffb020;
+  --error: #ff6b6b;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#scene { position: fixed; inset: 0; }
+
+/* ---- Load / drop hint ---- */
+#drop-hint {
+  position: fixed; inset: 0; z-index: 30;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(8, 10, 14, 0.55);
+  backdrop-filter: blur(3px);
+}
+#drop-hint.hidden { display: none; }
+#drop-hint .card {
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 14px; padding: 26px 30px; max-width: 460px; text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+}
+#drop-hint h1 { margin: 0 0 6px; font-size: 22px; }
+#drop-hint p { margin: 8px 0; color: var(--text); }
+.small { font-size: 13px; color: var(--muted); }
+.error { color: var(--error); font-size: 13px; min-height: 16px; }
+.link-like { cursor: pointer; color: var(--accent); text-decoration: underline; }
+.row { display: flex; gap: 8px; justify-content: center; margin: 14px 0 6px; }
+
+/* ---- Shared control styling ---- */
+button, select, input[type="range"] {
+  font: inherit; color: var(--text);
+  background: #1a222c; border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 12px; cursor: pointer;
+}
+button:hover, select:hover { border-color: #3d4b5c; background: #212b37; }
+button:active { transform: translateY(1px); }
+select { padding: 8px 10px; }
+code { background: #1a222c; padding: 1px 5px; border-radius: 4px; }
+
+/* ---- Overlays ---- */
+#info, #views {
+  position: fixed; z-index: 20;
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 12px; padding: 10px 12px;
+  backdrop-filter: blur(6px);
+}
+#info { top: 14px; right: 14px; min-width: 176px; }
+#info .stat {
+  display: flex; justify-content: space-between; gap: 16px;
+  padding: 3px 0; font-size: 13px;
+}
+#info .stat span { color: var(--muted); }
+#info .stat b { font-variant-numeric: tabular-nums; }
+
+#views { top: 14px; left: 14px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; max-width: 60vw; }
+#views button { padding: 6px 10px; font-size: 13px; }
+
+.toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); cursor: pointer; padding: 0 4px; }
+
+/* ---- Bottom playback bar ---- */
+#controls {
+  position: fixed; z-index: 20; left: 50%; bottom: 16px; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 10px;
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 14px; padding: 10px 14px; backdrop-filter: blur(6px);
+  width: min(760px, calc(100vw - 28px));
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+#controls button { padding: 8px 12px; }
+#play { min-width: 46px; font-size: 15px; }
+#scrub { flex: 1; cursor: pointer; padding: 0; height: 6px; accent-color: var(--accent); }
+
+/* Hide info/controls until a swing loads */
+body:not(.loaded) #info,
+body:not(.loaded) #views,
+body:not(.loaded) #controls { display: none; }
+
+@media (max-width: 560px) {
+  #info { top: auto; bottom: 92px; right: 8px; min-width: 150px; }
+  #views { top: 8px; left: 8px; }
+  #controls { gap: 6px; padding: 8px 10px; }
+  #speed, #loop-toggle { display: none; }
+}
