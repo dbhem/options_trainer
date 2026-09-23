@@ -8,6 +8,7 @@ on a tripod." All three run the **same software** in this repo.
 | **A. Laptop + webcam** | 5 min | $0–60 | Trying it today |
 | **B. Phone as the camera** | 5 min | $0 | Best video quality, no wiring |
 | **C. Raspberry Pi device** | 1–2 hrs | $120–180 | A standalone "gadget" at the range/net |
+| **D. iPhone Pro LiDAR app** | ~1 hr (build once) | $0 (own the phone) | **Most accurate 3D** — measures depth instead of guessing |
 
 ---
 
@@ -158,6 +159,22 @@ swings on your phone.
   touch a keyboard between swings.
 
 ---
+
+## Build D — iPhone Pro LiDAR app (most accurate 3D)
+
+Every build above uses a single flat camera, so it *guesses* how far each joint
+is from the lens. A **Pro iPhone** (12 Pro and newer) has a **LiDAR scanner** that
+*measures* real distance, so the depth is real instead of estimated. Apple's
+ARKit turns that into a full 3D skeleton for you.
+
+There's no wiring — the "hardware" is just your phone on a tripod. The work is a
+one-time app build in **Xcode on a Mac**. Everything you need (source code +
+step-by-step instructions) is in **[`ios/README.md`](ios/README.md)**.
+
+Trade-off to know: LiDAR body tracking runs ~30–60 fps, so for the ultra-fast
+moment of impact, a slow-mo clip (Build B) still freezes it better. Many people
+use Build D for the 3D body motion and a slow-mo clip for impact. The app saves
+the same `swing.json`, so both play back in the same 3D viewer.
 
 ## Where to place the camera (all builds)
 

@@ -47,6 +47,14 @@ from the dropdown (or drag a `swing.json` onto the page) and press **play**.
 > **First time?** The viewer already shows a built-in *demo* swing so you can
 > try the controls before recording anything real.
 
+### 📱 Have a Pro iPhone? Use its LiDAR for more accurate 3D
+
+A single webcam has to *guess* depth; a Pro iPhone's **LiDAR scanner measures**
+it. There's a small companion iOS app that records your swing with ARKit 3D body
+tracking and exports the **same `swing.json`**, so it plays back in this same
+viewer. See **[`ios/README.md`](ios/README.md)** to build it (needs a Mac +
+Xcode, one-time setup).
+
 ---
 
 ## Using the viewer
@@ -130,6 +138,7 @@ golf_swing_analyzer/
 │   ├── viewer.js       # 3D drawing + playback logic
 │   ├── style.css
 │   └── sample_swing.json   # built-in demo
+├── ios/                # iPhone LiDAR capture app (ARKit) -> same swing.json
 └── swings/             # your recordings land here (one folder per swing)
 ```
 
